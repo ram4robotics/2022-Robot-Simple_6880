@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMaxLowLevel.PeriodicFrame;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
@@ -43,6 +44,15 @@ public class DriveTrain extends SubsystemBase {
     m_right2.restoreFactoryDefaults();
     m_leftMotors = new MotorControllerGroup(m_left1, m_left2);
     m_rightMotors = new MotorControllerGroup(m_right1, m_right2);
+    m_left1.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
+    m_left1.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 500);
+    m_left2.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
+    m_left2.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 500);
+    m_right1.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
+    m_right1.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 500);
+    m_right2.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
+    m_right2.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 500);
+    
     m_rightMotors.setInverted(true);
 
     m_diffdrv = new DifferentialDrive(m_leftMotors, m_rightMotors);
@@ -175,10 +185,10 @@ public class DriveTrain extends SubsystemBase {
    */
   public void toggleMaxOutput(){
     if(speed_mode) {
-      m_diffdrv.setMaxOutput(0.5);
+      m_diffdrv.setMaxOutput(0.6);
       speed_mode = false;
     } else {
-      m_diffdrv.setMaxOutput(0.75);
+      m_diffdrv.setMaxOutput(0.8);
       speed_mode = true;
     }
 }

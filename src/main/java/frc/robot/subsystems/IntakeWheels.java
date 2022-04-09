@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMaxLowLevel.PeriodicFrame;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CAN_IDs;
@@ -20,6 +21,9 @@ public class IntakeWheels extends SubsystemBase {
     m_intakeWheels.restoreFactoryDefaults();
     m_intakeWheels.setIdleMode(IdleMode.kCoast);
     m_intakeWheels.setOpenLoopRampRate(0.5); // time in seconds to go from 0 to full throttle
+    m_intakeWheels.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
+    m_intakeWheels.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 500);
+    m_intakeWheels.setOpenLoopRampRate(0.5);
 
     m_intakeWheels.setSmartCurrentLimit(30);
   }

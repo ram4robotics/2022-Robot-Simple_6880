@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMaxLowLevel.PeriodicFrame;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -33,6 +34,12 @@ public class Launcher extends SubsystemBase {
     m_launcher2.restoreFactoryDefaults();
     m_launcher1.setIdleMode(IdleMode.kCoast);
     m_launcher2.setIdleMode(IdleMode.kCoast);
+    m_launcher1.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
+    m_launcher1.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 500);
+    m_launcher2.setPeriodicFramePeriod(PeriodicFrame.kStatus0, 100);
+    m_launcher2.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
+    m_launcher2.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 500);
+    // m_launcher1.setOpenLoopRampRate(0.5);
     m_launcher2.follow(m_launcher1, true);
 
     // Encoder object created to display velocity values
@@ -79,9 +86,11 @@ public class Launcher extends SubsystemBase {
 
   public void launchHigh(){
     launchHeight = true;
+    System.out.print("Launch High\n");
   }
 
   public void launchLow(){
     launchHeight = false;
+    System.out.print("Launch Low\n");
   }
 }

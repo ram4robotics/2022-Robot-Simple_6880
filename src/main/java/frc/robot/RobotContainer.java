@@ -42,7 +42,7 @@ public class RobotContainer {
   private final Launcher m_launcher = new Launcher(() -> m_xbox2.getPOV());
   private final ClimberElevator m_elevator = new ClimberElevator();
   private final DriveTrain m_drive = new DriveTrain();
-  private final DriveDistance m_simpleAuto = new DriveDistance(Units.inchesToMeters(92), -0.4, m_drive);
+  //private final DriveDistance m_simpleAuto = new DriveDistance(Units.inchesToMeters(92), -0.4, m_drive);
   private final AutoBackupAndShoot m_complexAuto = new AutoBackupAndShoot(m_drive, m_indexer, m_launcher, m_intakeArm);
 
   private final AutoCommands m_autoCommands = 
@@ -63,7 +63,7 @@ public class RobotContainer {
 
     // Configure the default commands
     m_drive.setDefaultCommand( new RunCommand(
-      () -> m_drive.arcadeDrive(-m_xbox1.getLeftY()/2, m_xbox1.getRightX()/3), m_drive));
+      () -> m_drive.arcadeDrive(-(Math.pow(m_xbox1.getLeftY(), 2) * Math.signum(m_xbox1.getLeftY())), m_xbox1.getRightX()/3), m_drive));
 
   }
 

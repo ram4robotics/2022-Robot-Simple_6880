@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMaxLowLevel.PeriodicFrame;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CAN_IDs;
@@ -24,6 +25,12 @@ public class Indexer extends SubsystemBase {
     // ToDo:  Check if the smart current limit is too low
     m_indexerFront.setSmartCurrentLimit(30);
     m_indexerBack.setSmartCurrentLimit(30);
+    m_indexerFront.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
+    m_indexerFront.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 500);
+    m_indexerBack.setPeriodicFramePeriod(PeriodicFrame.kStatus0, 100);
+    m_indexerBack.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
+    m_indexerBack.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 500);
+    m_indexerFront.setOpenLoopRampRate(0.5);
     m_indexerBack.follow(m_indexerFront, true);
   }
 

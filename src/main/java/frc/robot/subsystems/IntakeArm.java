@@ -13,6 +13,7 @@ import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMaxLowLevel.PeriodicFrame;
 import com.revrobotics.SparkMaxPIDController.ArbFFUnits;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
@@ -41,6 +42,8 @@ public class IntakeArm extends SubsystemBase {
     m_intakeArm.restoreFactoryDefaults();
     m_intakeArm.setIdleMode(IdleMode.kBrake);
     m_intakeArm.setSmartCurrentLimit(80);
+    m_intakeArm.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
+    m_intakeArm.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 500);
 
     // Verify that the soft limit is correct after experimentation 
     m_intakeArm.enableSoftLimit(SoftLimitDirection.kForward, true);

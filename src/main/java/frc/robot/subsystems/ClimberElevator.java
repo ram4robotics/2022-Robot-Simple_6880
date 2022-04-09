@@ -9,6 +9,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMaxLowLevel.PeriodicFrame;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CAN_IDs;
@@ -29,6 +30,11 @@ public class ClimberElevator extends SubsystemBase {
     m_elevator2.restoreFactoryDefaults();
     m_elevator2.setIdleMode(IdleMode.kBrake);
     m_elevator2.setSmartCurrentLimit(80);
+    m_elevator1.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
+    m_elevator1.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 500);
+    m_elevator2.setPeriodicFramePeriod(PeriodicFrame.kStatus0, 100);
+    m_elevator2.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
+    m_elevator2.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 500);
 
     m_elevator2.follow(m_elevator1, false);
 
